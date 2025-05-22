@@ -3,34 +3,11 @@ import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, useGLTF } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
-import {
-  BallCollider,
-  Physics,
-  RigidBody,
-  CylinderCollider,
-} from "@react-three/rapier";
+import { BallCollider, Physics, RigidBody } from "@react-three/rapier";
 import { useMemo } from "react";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils";
 
 THREE.ColorManagement.legacyMode = false;
-
-// // 球体のマテリアル
-// const baubleMaterial = new THREE.MeshLambertMaterial({
-//   color: "#d7c86e",
-//   emissive: "#ecd13a",
-// });
-
-// // キャップのマテリアル
-// const capMaterial = new THREE.MeshStandardMaterial({
-//   // metalness: 0.75,
-//   // roughness: 0.15,
-//   color: "#baae6c",
-//   // emissive: "#603600",
-//   envMapIntensity: 20, // 環境マップの反射
-// });
-
-// //球体ジオメトリ（28分割）を作成
-// const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
 // 50個の bauble を作成、スケールをランダムに決定（小・中・大の3パターン）
 const baubles = [...Array(50)].map(() => ({
@@ -44,7 +21,7 @@ function Bauble({
 }) {
   //外部GLBを読み込み。
   // const { nodes } = useGLTF("/cap.glb");
-  const { scene } = useGLTF("/hamburger.glb");
+  const { scene } = useGLTF("/fugu.glb");
   console.log(scene);
 
   // 必ず clone する（SkeletonUtils.clone はアニメ付きGLTFでもOK）
@@ -85,30 +62,6 @@ function Bauble({
         castShadow
         receiveShadow
       />
-      {/* 飾りのコリジョン設定 */}
-      {/* <CylinderCollider
-        rotation={[Math.PI / 2, 0, 0]}
-        position={[0, 0, 1.2 * scale]}
-        args={[0.15 * scale, 0.275 * scale]}
-      /> */}
-
-      {/* 描画部分 */}
-      {/* <mesh
-        castShadow
-        receiveShadow
-        scale={scale}
-        // geometry={sphereGeometry}
-        geometry={scene}
-        material={baubleMaterial}
-      /> */}
-      {/* <mesh
-        console.log(scene);
-        castShadow
-        scale={2.5 * scale}
-        position={[0, 0, -1.8 * scale]}
-        geometry={nodes.Mesh_1.geometry}
-        material={capMaterial}
-      /> */}
     </RigidBody>
   );
 }
@@ -139,26 +92,11 @@ function Pointer({ vec = new THREE.Vector3() }) {
 
 export default function Scene() {
   return (
-    <Canvas
-      style={{ background: "#43c2ec" }}
-      shadows
-      gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-      camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-      onCreated={(state) => (state.gl.toneMappingExposure = 2.5)}
-    >
+    <>
       <ambientLight intensity={2.5} />
-      <spotLight
-        position={[20, 20, 25]}
-        penumbra={1}
-        angle={0.2}
-        color="white"
-        castShadow
-        shadow-mapSize={[512, 512]}
-        intensity={2}
-      />
-      <directionalLight position={[0, 5, -4]} intensity={5} />
-      <directionalLight position={[0, -15, -0]} intensity={4} color="red" />
-      <Physics gravity={[0, 0, 0]}>
+      <directionalLight position={[0, 5, -4]} intensity={2} color="blue" />
+      <directionalLight position={[0, -15, -0]} intensity={2} color="orange" />
+      <Physics gravity={[5, 0, 0]}>
         <Pointer />
         {
           baubles.map((props, i) => <Bauble key={i} {...props} />) /* prettier-ignore */
@@ -166,12 +104,8 @@ export default function Scene() {
       </Physics>
       <Environment files="/adamsbridge.hdr" />
       <EffectComposer disableNormalPass>
-        <N8AO color="red" aoRadius={2} intensity={1.15} />
+        <N8AO color="black" aoRadius={2} intensity={1.15} />
       </EffectComposer>
-      {/* <ambientLight intensity={0.5} />
-    <pointLight position={[10, 10, 10]} />
-    <BoxMesh position={[0, 0, 0]} />
-    <OrbitControls /> */}
-    </Canvas>
+    </>
   );
 }
