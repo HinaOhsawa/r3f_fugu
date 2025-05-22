@@ -18,9 +18,9 @@ function App() {
       </Canvas>
 
       {/* MV */}
-      <div className="absolute inset-0 z-10 absolute top-[3%] left-[0%] pointer-events-none border-white border-y-8 h-6 w-full"></div>
+      <div className="absolute inset-0 z-10 top-[3%] left-[0%] pointer-events-none border-white border-y-8 h-6 w-full"></div>
 
-      <div className="absolute inset-0 z-10 absolute top-[30%] left-[5%] pointer-events-none">
+      <div className="max-w-3xl absolute inset-0 z-10 top-[30%] left-[15%] pointer-events-none">
         <h1 className="vertical-text text-9xl kaisei-tokumin-extrabold text-gray-950  animate-float ">
           ふぐ祭り
         </h1>
@@ -44,9 +44,13 @@ function App() {
 
         <h2 className="mt-8 text-lg  font-bold">フグのモデリング</h2>
         <div className="mt-2 flex flex-wrap justify-center gap-4">
-          <img class="w-90 h-90 object-cover" src="/images/fugu.png" alt="" />
           <img
-            class="w-90 h-90 object-cover"
+            className="w-90 h-90 object-cover"
+            src="/images/fugu.png"
+            alt=""
+          />
+          <img
+            className="w-90 h-90 object-cover"
             src="/images/fugu_tenkai.png"
             alt=""
           />

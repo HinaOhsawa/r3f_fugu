@@ -20,9 +20,7 @@ function Bauble({
   r = THREE.MathUtils.randFloatSpread,
 }) {
   //外部GLBを読み込み。
-  // const { nodes } = useGLTF("/cap.glb");
   const { scene } = useGLTF("/fugu.glb");
-  console.log(scene);
 
   // 必ず clone する（SkeletonUtils.clone はアニメ付きGLTFでもOK）
   // SkeletonUtils.clone(scene) を使うことで、アニメーション・スキニングのあるモデルも複製できます。
