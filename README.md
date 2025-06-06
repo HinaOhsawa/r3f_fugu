@@ -1,3 +1,14 @@
+# ふぐ祭り
+
+![サイトトップ](./public/images/og-image.png)
+
+## 🐡 デモ
+[https://r3f-fugu.netlify.app](https://r3f-fugu.netlify.app)
+
+## 参考サイト
+[https://codesandbox.io/p/sandbox/zxpv7?file=%2Fsrc%2Fstyles.css](https://codesandbox.io/p/sandbox/zxpv7?file=%2Fsrc%2Fstyles.css)
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
