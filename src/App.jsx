@@ -42,8 +42,9 @@ function App() {
           tailwindcss
         </span>
 
-        <p className="mt-4 text-gray-600">
-          参考サイト:&nbsp;
+        <p className="mt-6 text-gray-600">
+          参考サイト
+          <br />
           <a
             className="underline text-gray-500 hover:text-gray-400 transition"
             href="https://codesandbox.io/p/sandbox/zxpv7?file=%2Fsrc%2Fstyles.css"
